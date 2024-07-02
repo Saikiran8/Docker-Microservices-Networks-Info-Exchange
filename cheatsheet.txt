@@ -1,0 +1,20 @@
+ docker run --network test1 --name sa-python -p 8443:8443 abhiash1998/sa-python:sa-python
+ docker stop sa-python && docker rm sa-python 
+  docker run --network test1 --name sa-java -p 8080:8080 abhiash1998/sa-java:sa-java  
+  docker stop sa-java && docker rm sa-java   
+
+   docker run --network test1 --name sa-react -p 3000:80 abhiash1998/sa-react:sa-react
+   docker stop sa-react && docker rm sa-react  
+
+
+   docker build -t abhiash1998/sa-react:sa-react .  
+    docker build -t abhiash1998/sa-python:sa-python .    
+    docker build -t abhiash1998/sa-java:sa-java .    
+
+     docker push abhiash1998/sa-java:sa-java   
+     docker push abhiash1998/sa-python:sa-python  
+     docker push  abhiash1998/sa-react:sa-react             
+
+     java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar --sa.logic.api.url=http://localhost:8443      
+
+      mvn clean install          
